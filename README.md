@@ -10,13 +10,13 @@ docker-compose up -d
 
 ## To test a test file
 
-change diretory to the 'app' folder
+Change diretory to the 'app' folder
 
 ```shell
 cd app
 ```
 
-and then run the test file using the command:
+And then run the test file using the command:
 
 ```shell
 go test
