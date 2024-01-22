@@ -19,8 +19,8 @@ func TestStrongPasswordSteps(t *testing.T) {
 			return
 		}
 
-		numOfSteps := CalculateNumOfSteps(req.InitPassword)
-		c.JSON(http.StatusOK, PasswordResponse{NumOfSteps: numOfSteps})
+		numOfSteps := calculateNumOfSteps(req.InitPassword)
+		c.JSON(http.StatusOK, gin.H{"num_of_steps": numOfSteps})
 	})
 
 	testCases := []struct {

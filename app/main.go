@@ -15,10 +15,6 @@ type PasswordRequest struct {
 	InitPassword string `json:"init_password"`
 }
 
-type PasswordResponse struct {
-	NumOfSteps int `json:"num_of_steps"`
-}
-
 var db *gorm.DB
 
 type Log struct {
@@ -27,7 +23,7 @@ type Log struct {
 	Response string
 }
 
-func CalculateNumOfSteps(password string) int {
+func calculateNumOfSteps(password string) int {
 
 	ans := 0
 	if len(password) > 20 {
@@ -111,6 +107,9 @@ func CalculateNumOfSteps(password string) int {
 }
 
 func main() {
+
+	gin.SetMode(gin.ReleaseMode)
+
 	r := gin.Default()
 
 	var err error
@@ -129,12 +128,12 @@ func main() {
 			return
 		}
 
-		numOfSteps := CalculateNumOfSteps(req.InitPassword)
+		numOfSteps := calculateNumOfSteps(req.InitPassword)
 
 		logEntry := Log{Request: req.InitPassword, Response: fmt.Sprintf(`{"num_of_steps": %d}`, numOfSteps)}
 		db.Create(&logEntry)
 
-		c.JSON(http.StatusOK, PasswordResponse{NumOfSteps: numOfSteps})
+		c.JSON(http.StatusOK, gin.H{"num_of_steps": numOfSteps})
 	})
 
 	r.Run(":8080")
