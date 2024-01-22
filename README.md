@@ -2,21 +2,17 @@
 
 Clone this repository on your local storage.
 
-Open the terminal and use the command:
+Then, open the Docker application.
+
+After the Docker is already run, open the terminal and use the command:
 
 ```shell
 docker-compose up -d
 ```
 
-## To test a test file
+## To run a unit test
 
-Change diretory to the 'app' folder
-
-```shell
-cd app
-```
-
-And then run the test file using the command:
+Run the test file using the command:
 
 ```shell
 go test
